@@ -29,6 +29,7 @@
     "gulp-jshint": "^1.5.3",
     "jshint-stylish": "^0.1.5",
     "gulp-exec": "^1.0.4",
-    "gulp-livereload": "^1.2.0"
+    "gulp-livereload": "^1.2.0",
+    "gulp-karma": "0.0.4"
   }
 }

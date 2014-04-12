@@ -14,11 +14,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/public/bower_components/underscore/underscore.js',
-      'app/public/bower_components/angular/angular.js',
-      'app/public/bower_components/angular-resource/angular-resource.js',
-      'app/public/bower_components/angular-sanitize/angular-sanitize.js',
-      'app/public/bower_components/angular-mocks/angular-mocks.js',
+      'public/bower_components/underscore/underscore.js',
+      'public/bower_components/angular/angular.js',
+      'public/bower_components/angular-resource/angular-resource.js',
+      'public/bower_components/angular-sanitize/angular-sanitize.js',
+      'public/bower_components/angular-mocks/angular-mocks.js',
       'src/js/**/*.js',
       'spec/**/*.js'
     ],
