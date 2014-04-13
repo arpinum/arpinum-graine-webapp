@@ -70,3 +70,5 @@ gulp.task('watch', function () {
 gulp.task('build', ['less', 'js']);
 
 gulp.task('default', ['build','server', 'test', 'watch']);
+
+gulp.task('heroku:production', ['build']);
