@@ -38,7 +38,7 @@ gulp.task('js', function () {
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
         .pipe(changed('./public/genere/js'))
-        .pipe(concat('app.js'))
+        .pipe(concat('app_pkg.js'))
         .pipe(gulp.dest('./public/genere/js'));
 });
 

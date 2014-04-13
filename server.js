@@ -16,7 +16,7 @@ i18n.init({
 
 app.configure('development', function () {
     app.use(express.logger('dev'));
-    app.locals.urlApi = 'http://localhost\\\\:8080';
+    app.locals.urlApi = 'http://localhost:8182';
 
 });
 
