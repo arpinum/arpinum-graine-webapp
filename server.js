@@ -16,16 +16,16 @@ i18n.init({
 
 app.configure('development', function () {
     app.use(express.logger('dev'));
-    app.locals.apiUrl = 'http://localhost\\\\:8182';
+    app.locals.urlApi = 'http://localhost\\\\:8080';
 
 });
 
 app.configure('staging', function () {
-    app.locals.apiUrl = 'http://votreapi-itg.fr';
+    app.locals.urlApi = 'http://votreapi-itg.fr';
 });
 
 app.configure('production', function () {
-    app.locals.apiUrl = 'http://votreapi.fr';
+    app.locals.urlApi = 'http://votreapi.fr';
 });
 
 app.configure(function () {
