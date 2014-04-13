@@ -15,7 +15,7 @@ gulp
 
 ## Configuration heroku
 
-- Run `heroku config:add BUILDPACK_URL=https://github.com/timdp/heroku-buildpack-nodejs-gulp.git`
+- Run `heroku config:add BUILDPACK_URL=git@github.com:appstack/heroku-buildpack-nodejs-gulp.git`
 - Run `heroku labs:enable buildpack-env-arg` to enable environment variable support
 - Run `heroku config:set NODE_ENV=production` to set your environment to `production` (or any other name)
 
