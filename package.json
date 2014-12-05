@@ -1,33 +1,41 @@
 {
-    "name": "votre-application",
-    "version": "0.0.1",
-    "scripts": {
-        "start": "node app",
-        "postinstall": "./node_modules/bower/bin/bower install"
-    },
-    "dependencies": {
-        "express": "3.x",
-        "underscore": "~1.5.1",
-        "i18next": "~1.7.1",
-        "jade": "^1.3.1",
-        "bower": "1.3.x",
-        "karma": "^0.12.4",
-        "karma-osx-reporter": "0.0.4",
-        "karma-jasmine": "^0.1.5",
-        "gulp": "^3.6.0",
-        "gulp-less": "^1.2.3",
-        "gulp-changed": "^0.3.0",
-        "gulp-concat": "^2.2.0",
-        "phantomjs": "^1.9.7-3",
-        "karma-phantomjs-launcher": "^0.1.4",
-        "gulp-jshint": "^1.5.3",
-        "jshint-stylish": "^0.1.5",
-        "gulp-exec": "^1.0.4",
-        "gulp-livereload": "^1.2.0",
-        "gulp-karma": "0.0.4"
-    },
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.2.x"
-    }
+  "name": "votre-application",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app",
+    "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "dependencies": {
+    "angular": "^1.3.5",
+    "bootstrap": "^3.3.1",
+    "browserify": "^6.3.3",
+    "browserify-shim": "^3.8.0",
+    "express": "3.x",
+    "i18next": "~1.7.1",
+    "jade": "^1.3.1",
+    "jquery": "^2.1.1",
+    "underscore": "~1.5.1"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "devDependencies": {
+    "bower": "1.3.x",
+    "browserify-shim": "^3.8.0",
+    "chai": "^1.10.0",
+    "grunt-browserify": "^3.2.1",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha": "^0.4.11",
+    "grunt-mocha-test": "^0.12.4",
+    "grunt-nodemon": "^0.3.0",
+    "gulp-watch": "^3.0.0",
+    "jshint-stylish": "^1.0.0",
+    "matchdep": "^0.3.0",
+    "mocha": "^2.0.1",
+    "phantomjs": "^1.9.7-3"
+  }
 }
