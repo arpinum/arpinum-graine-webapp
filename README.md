@@ -8,10 +8,43 @@ Ce projet est la base de travail pour la partie webapp des applications Arpinum.
 
 ## Dev
 
-npm install -g gulp
+npm install -g grunt-cli
 npm install
-gulp
+grunt
 
+## Faire un build de prod
+
+grunt build --prod
+
+## Technologies et approche
+
+### Browserify et dépendances clients
+
+En utilisant browserify, nous favorisons le plus possible des libs disponibles dans NPM.
+
+Si ce n'est pas le cas ou pas pratique, nous utilisons bower. Nous mettons alors dans package.json ce qu'il faut dans la partie browser et shim pour faire le pont.
+Nous pouvons également utiliser exposify pour exposer des libs qui s'exportent que dans window (c'est ce que nous utilisons actuellement pour angular).
+
+Le JS est séparé en deux fichiers : vendor, et app. Nous pouvons cependant construire automatiquement plus de modules.
+Les libs sont mises à part, car étant donné qu'elles changent moins souvent, nous ne voulons par forcer les clients à retélécharger un énorme js dès que nous changeons notre propre code.
+
+### Express
+
+Express est utilisé pour servir les fichiers, gérer la localisation, exposer les templates angular, et éventuellement faire proxy vers l'api, et garder les secrets de communication.
+
+### Angular
+
+Angular, sans ui-router, ui-bootstrap, et restangular, ce n'est pas tout à fait la même chose.
+
+### Tests   
+
+Grâce à browserify, notre code js côté client ne dépend pas d'angular, ni de rien venant du navigateur. Nous pouvons donc lancer les tests directement dans node.
+
+### Organisation du code client
+
+ * Les specs sont à côté du fichier quelles testent.
+ * Les modules sont organisées par notions métiers
+ * Chaque module expose un index.js, qui contient la plomberie angular. Il suffit de dépendre de cet index pour avoir la totalité du module à disposition (pas de dépendances aux fichiers du module).
 
 ## Configuration heroku
 

@@ -15,7 +15,6 @@ describe("Une première spec", function () {
     });
 
     it("doit parler au scope", function () {
-        expect($scope.test).to.equal("tata");
+        expect($scope.test).to.equal("toto");
     });
-
 });

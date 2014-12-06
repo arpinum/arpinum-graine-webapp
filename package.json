@@ -22,8 +22,8 @@
   },
   "devDependencies": {
     "bower": "1.3.x",
-    "browserify-shim": "^3.8.0",
     "chai": "^1.10.0",
+    "exposify": "^0.2.0",
     "grunt-browserify": "^3.2.1",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-less": "^0.12.0",
@@ -37,5 +37,15 @@
     "matchdep": "^0.3.0",
     "mocha": "^2.0.1",
     "phantomjs": "^1.9.7-3"
+  },
+  "browser":{
+    "bootstrap": "./public/bower_components/bootstrap/dist/js/bootstrap.js"
+  },
+  "browserify-shim": {
+    "bootstrap": {
+      "depends": [
+        "jquery:jQuery"
+      ]
+    }
   }
 }

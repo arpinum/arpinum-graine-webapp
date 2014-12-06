@@ -1,8 +1,11 @@
 "use strict";
 
-var _ = require("underscore");
+
 
 module.exports = function (grunt) {
+
+    var exposify = require("exposify");
+    exposify.config = {angular: "angular"};
 
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
@@ -13,24 +16,24 @@ module.exports = function (grunt) {
             all: ["src/js/**/*.js"],
             options: {
                 jshintrc: true,
-                reporter: require('jshint-stylish')
+                reporter: require("jshint-stylish")
             }
         },
         mochaTest: {
             console: {
-                src: ['src/js/**/*_spec.js'],
+                src: ["src/js/**/*_spec.js"],
                 options: {
                     reporter: ["spec"]
                 }
             },
             watch: {
-                src: ['src/js/**/*_spec.js'],
+                src: ["src/js/**/*_spec.js"],
                 options: {
-                    reporter: ["spec"]
+                    reporter: ["dot"]
                 }
             },
             ci: {
-                src: ['src/js/**/*_spec.js'],
+                src: ["src/js/**/*_spec.js"],
                 options: {
                     reporter: ["Xunit"]
                 }
@@ -41,10 +44,23 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: "src/js",
-                    src: ["*.js", "!*_spec.js"],
+                    src: ["*.js", "!*_spec.js", "!vendor.js"],
                     dest: "<%= buildDir %>/js/"
                 }],
                 options: {
+                    watch: "<%= mustWatch %>",
+                    transform: ["exposify"],
+                    browserifyOptions: {
+                        debug: "<%= !prod %>"
+                    },
+                    external: ["angular", "jquery", "underscore"]
+                }
+            },
+            vendor: {
+                src: "src/js/vendor.js",
+                dest: "<%= buildDir %>/js/vendor.js",
+                options: {
+                    transform: ["browserify-shim"],
                     watch: "<%= mustWatch %>",
                     browserifyOptions: {
                         debug: "<%= !prod %>"
@@ -81,16 +97,16 @@ module.exports = function (grunt) {
         watch: {
             less: {
                 files: "src/less/**/*.less",
-                tasks: ["less"]
+                tasks: ["less"]
             },
             js: {
                 files: ["src/js/**/*.js"],
-                tasks: ["jshint", "mochaTest:watch"]
+                tasks: ["jshint", "mochaTest:watch"]
             }
         },
         nodemon: {
             server: {
-                script: 'server.js'
+                script: "server.js"
             }
         }
     });
@@ -110,7 +126,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask("build", function () {
         grunt.task.run(["less", "browserify"]);
-        if(grunt.option("prod")) {
+        if (grunt.option("prod")) {
             grunt.task.run("uglify");
         }
     });
