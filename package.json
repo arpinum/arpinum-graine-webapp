@@ -36,9 +36,11 @@
     "jshint-stylish": "^1.0.0",
     "matchdep": "^0.3.0",
     "mocha": "^2.0.1",
-    "phantomjs": "^1.9.7-3"
+    "phantomjs": "^1.9.7-3",
+    "sinon": "^1.12.1",
+    "sinon-chai": "^2.6.0"
   },
-  "browser":{
+  "browser": {
     "bootstrap": "./public/bower_components/bootstrap/dist/js/bootstrap.js"
   },
   "browserify-shim": {

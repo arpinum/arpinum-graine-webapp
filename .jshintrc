@@ -15,7 +15,6 @@
   "eqnull": true,
   "quotmark": "double",
   "strict": true,
-  "node": true,
   "expr": true,
   "laxbreak": true,
   "node":true,
