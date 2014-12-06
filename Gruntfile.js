@@ -114,9 +114,8 @@ module.exports = function (grunt) {
 
     require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
-    grunt.registerTask("test", ["jshint", "karma:console"]);
-    grunt.registerTask("default", ["karma:watch:start", "watch"]);
-    grunt.registerTask("ci", ["jshint", "karma:ci"]);
+    grunt.registerTask("test", ["jshint", "mochaTest:console"]);
+    grunt.registerTask("ci", ["jshint", "build", "mochaTest:ci"]);
 
     grunt.registerTask("default", function () {
         grunt.config.set("mustWatch", true);
