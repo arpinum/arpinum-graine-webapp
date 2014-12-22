@@ -8,43 +8,52 @@ Ce projet est la base de travail pour la partie webapp des applications Arpinum.
 
 ## Dev
 
+```bash
 npm install -g grunt-cli
-npm install
-grunt
+npm install grunt
+```
 
 ## Faire un build de prod
 
 grunt build --prod
 
-## Technologies et approche
+## Tâches
 
-### Browserify et dépendances clients
+| Nom | Description | Options |
+|-----|-------------|---------|
+| default | construit le site, lance les tests, jshint, et surveille les changements||
+| js |Construit vendor.js et les app | --watch pour autoconstruire les changements |
+| build | Construit tout le site | --prod pour minifier le tout |
+| test | ne fait que lancer les tests et jshint ||
+| ci | tâche pour l'intégration continue, jshint et tests avec rapport junit ||
+
+
+## Browserify et dépendances clients
 
 En utilisant browserify, nous favorisons le plus possible des libs disponibles dans NPM.
 
 Si ce n'est pas le cas ou pas pratique, nous utilisons bower. Nous mettons alors dans package.json ce qu'il faut dans la partie browser et shim pour faire le pont.
-Nous pouvons également utiliser exposify pour exposer des libs qui s'exportent que dans window (c'est ce que nous utilisons actuellement pour angular).
 
 Le JS est séparé en deux fichiers : vendor, et app. Nous pouvons cependant construire automatiquement plus de modules.
 Les libs sont mises à part, car étant donné qu'elles changent moins souvent, nous ne voulons par forcer les clients à retélécharger un énorme js dès que nous changeons notre propre code.
 
-### Express
+### Ajouter une dépendance via bower
 
-Express est utilisé pour servir les fichiers, gérer la localisation, exposer les templates angular, et éventuellement faire proxy vers l'api, et garder les secrets de communication.
+ * Mettre à jour package.json, en ajouter l'entrée browser qui convient
+ * Éventuellement ajouter de la configuration dans shim.js
+ * Toutes les dépendances misent dans shim sont pour le moment packagés dans vendor
 
-### Angular
-
-Angular, sans ui-router, ui-bootstrap, et restangular, ce n'est pas tout à fait la même chose.
-
-### Tests   
+## Écrire des tests unitaires
 
 Grâce à browserify, notre code js côté client ne dépend pas d'angular, ni de rien venant du navigateur. Nous pouvons donc lancer les tests directement dans node.
+Les fichiers de tests sont à placer à côté du ficher qu'ils valident, et à suffixer par **_spec**
 
-### Organisation du code client
+## Organisation du code client
 
  * Les specs sont à côté du fichier quelles testent.
  * Les modules sont organisées par notions métiers
  * Chaque module expose un index.js, qui contient la plomberie angular. Il suffit de dépendre de cet index pour avoir la totalité du module à disposition (pas de dépendances aux fichiers du module).
+ * ngAnnotate est utilisé pour gérer automatiquement l'injection angular. En revanche, vu notre manière d'importer, il faut absolument passer par l'annotation ngAnnotate
 
 ## Configuration heroku
 
