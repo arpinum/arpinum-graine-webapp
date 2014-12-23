@@ -5,6 +5,7 @@ var express = require("express"),
     i18n = require("i18next");
 var morgan = require("morgan");
 var serveStatic = require("serve-static");
+var revision = require("./revision");
 
 
 var app = express();
@@ -18,10 +19,12 @@ if ("development" === app.get("env")) {
 }
 
 if ("staging" === app.get("env")) {
+    revision.initMap(require("./public/genere/map.json"));
     app.locals.apiUrl = "http://jamshake-api-itg.arpinum.fr";
 }
 
 if ("production" === app.get("env")) {
+    revision.initMap(require("./public/genere/map.json"));
     app.locals.apiUrl = "http://jamshake.com";
 }
 
@@ -31,6 +34,7 @@ i18n.serveClientScript(app)
 app.set("views", path.join(__dirname, "/vues"));
 app.set("view engine", "jade");
 app.use(serveStatic(__dirname + "/public/"));
+revision.registerHelper(app);
 
 require("./routes")(app);
 
