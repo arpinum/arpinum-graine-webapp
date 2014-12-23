@@ -1,10 +1,7 @@
 var mapToUse = {};
 
 function revision(key) {
-    if(mapToUse.hasOwnProperty(key)) {
-        return mapToUse[key];
-    }
-    return key;
+    return mapToUse[key] || key;
 }
 
 module.exports = {

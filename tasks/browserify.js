@@ -60,15 +60,15 @@ module.exports = function (grunt) {
             grunt.log.write("Watchify " + output);
             var w = watchify(b);
             w.on('update', function () {
-                bundle(w);
+                callBundle(w);
             });
             w.on('log', grunt.log.ok);
-            bundle(w);
+            callBundle(w);
         } else {
-            bundle(b);
+            callBundle(b);
         }
 
-        function bundle(wrapper) {
+        function callBundle(wrapper) {
             wrapper.bundle(function (err, buff) {
                 if (err) {
                     grunt.log.error(err.toString());

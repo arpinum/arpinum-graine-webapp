@@ -20,7 +20,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask("ci", ["jshint", "mochaTest:ci", "build"]);
 
-    grunt.registerTask("default", ["dev"]);
+    grunt.registerTask("default", ["clean", "dev"]);
+
+    grunt.registerTask("build", ["clean", "assets"]);
 
 
     function loadConfig(path) {
