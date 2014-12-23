@@ -11,11 +11,8 @@ Ce projet est la base de travail pour la partie webapp des applications Arpinum.
 ```bash
 npm install -g grunt-cli
 npm install grunt
+grunt
 ```
-
-## Faire un build de prod
-
-grunt build --prod
 
 ## Tâches
 
@@ -57,7 +54,6 @@ Les fichiers de tests sont à placer à côté du ficher qu'ils valident, et à 
 
 ## Configuration heroku
 
-- Run `heroku config:add BUILDPACK_URL=https://github.com/appstack/heroku-buildpack-nodejs-gulp.git`
 - Run `heroku config:set NODE_ENV=production` to set your environment to `production` (or any other name)
 
 ## Licence
