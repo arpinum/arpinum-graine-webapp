@@ -14,18 +14,18 @@ var app = express();
 console.log("Configuration de l'application pour l'environnement " + app.get("env"));
 
 if ("development" === app.get("env")) {
-    app.locals.apiUrl = "http://localtest.me:8080";
+    app.locals.apiUrl = "";
     app.use(morgan("combined"));
 }
 
 if ("staging" === app.get("env")) {
     revision.initMap(require("./public/genere/map.json"));
-    app.locals.apiUrl = "http://jamshake-api-itg.arpinum.fr";
+    app.locals.apiUrl = "";
 }
 
 if ("production" === app.get("env")) {
     revision.initMap(require("./public/genere/map.json"));
-    app.locals.apiUrl = "http://jamshake.com";
+    app.locals.apiUrl = "";
 }
 
 i18n.serveClientScript(app)
@@ -34,10 +34,10 @@ i18n.serveClientScript(app)
 app.set("views", path.join(__dirname, "/vues"));
 app.set("view engine", "jade");
 app.use(serveStatic(__dirname + "/public/"));
-revision.registerHelper(app);
 
 require("./routes")(app);
 
+revision.registerHelper(app);
 i18n.registerAppHelper(app);
 
 var port = process.env.PORT || 5000;
