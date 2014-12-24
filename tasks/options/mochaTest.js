@@ -14,7 +14,8 @@ module.exports = {
     ci: {
         src: ["src/js/**/*_spec.js"],
         options: {
-            reporter: ["Xunit"]
+            reporter: ["XUnit"],
+	    captureFile: "junit-report.xml"
         }
     }
 };

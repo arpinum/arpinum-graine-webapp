@@ -3,3 +3,4 @@
 node_modules
 public/genere
 public/bower_components
+junit-report.xml
