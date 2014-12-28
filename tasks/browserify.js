@@ -8,21 +8,19 @@ module.exports = function (grunt) {
 
     grunt.registerTask("vendor", function () {
         var done = this.async();
-        var bowerResolve = require("bower-resolve");
         var shims = require(".././shim.js"),
             sharedModules = Object.keys(shims);
+        var packages = require("../package.json");
 
-        bowerResolve.init(function () {
-            var vendor = createBundle({
-                debug: true,
-                noParse: sharedModules
-            }).transform(["browserify-shim"]);
+        var vendor = createBundle({
+            debug: true,
+            noParse: sharedModules
+        }).transform(["browserify-shim"]);
 
-            sharedModules.forEach(function (shareModule) {
-                vendor.require(bowerResolve(shareModule), {expose: shareModule});
-            });
-            bundle(vendor, grunt.template.process("<%= buildDir%>/js/vendor.js"), done, false);
+        sharedModules.forEach(function (shareModule) {
+            vendor.require(require.resolve("../" + packages.browser[shareModule]), {expose: shareModule});
         });
+        bundle(vendor, grunt.template.process("<%= buildDir%>/js/vendor.js"), done, false);
 
 
     });
