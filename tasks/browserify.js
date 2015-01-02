@@ -8,10 +8,9 @@ module.exports = function (grunt) {
 
     grunt.registerTask("vendor", function () {
         var done = this.async();
-        var shims = require(".././shim.js"),
+        var shims = require("../shim.js"),
             sharedModules = Object.keys(shims);
         var packages = require("../package.json");
-
         var vendor = createBundle({
             debug: true,
             noParse: sharedModules
@@ -20,9 +19,7 @@ module.exports = function (grunt) {
         sharedModules.forEach(function (shareModule) {
             vendor.require(require.resolve("../" + packages.browser[shareModule]), {expose: shareModule});
         });
-        bundle(vendor, grunt.template.process("<%= buildDir%>/js/vendor.js"), done, false);
-
-
+        bundle(vendor, grunt.template.process("<%= buildDir%>/js/vendor.js"), false, createCountingNotification(1, false, done));
     });
 
     grunt.registerTask("app", function () {
@@ -34,14 +31,18 @@ module.exports = function (grunt) {
             flatten: true,
             cwd: "./src/js"
         });
-        appMapping.forEach(function (mapping) {
+        var doneNotification = createCountingNotification(appMapping.length, grunt.option("watch"), done);
+
+        appMapping.forEach(function (mapping, index) {
             var app = createBundle({}, grunt.option("watch"));
             app.external(sharedModules);
+            app.transform("browserify-shim");
             app.transform("browserify-ngannotate");
             mapping.src.forEach(function (file) {
+                grunt.log.writeln("Creating bundle for " + file);
                 app.add("./" + file);
             });
-            bundle(app, mapping.dest, done, grunt.option("watch"));
+            bundle(app, mapping.dest, grunt.option("watch"), doneNotification);
         });
     });
 
@@ -53,14 +54,14 @@ module.exports = function (grunt) {
         return browserify(options);
     }
 
-    function bundle(b, output, done, watch) {
+    function bundle(b, output, watch, notifyDone) {
         if (watch) {
-            grunt.log.write("Watchify " + output);
+            grunt.log.writeln("Watchify " + output);
             var w = watchify(b);
-            w.on('update', function () {
+            w.on("update", function () {
                 callBundle(w);
             });
-            w.on('log', grunt.log.ok);
+            w.on("log", grunt.log.ok);
             callBundle(w);
         } else {
             callBundle(b);
@@ -70,16 +71,34 @@ module.exports = function (grunt) {
             wrapper.bundle(function (err, buff) {
                 if (err) {
                     grunt.log.error(err.toString());
-                    if (!watch) {
-                        done(false);
-                    }
+
                 } else {
                     grunt.file.write(output, buff);
-                    if (!watch) {
-                        done();
-                    }
+                    grunt.log.ok("Writing to " + output);
                 }
+                notifyDone(err);
             });
         }
     }
+
+
+    function createCountingNotification(count, watch, done) {
+        var currentCount = 0;
+        return function (err) {
+            currentCount++;
+            if (currentCount === count && !watch) {
+                notify(err, done);
+            }
+        };
+    }
+
+    function notify(err, done) {
+        if (err) {
+            done(false);
+        } else {
+            grunt.log.ok("Bundling done");
+            done();
+        }
+    }
 };
+
