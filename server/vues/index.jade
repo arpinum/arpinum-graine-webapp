@@ -1,0 +1,10 @@
+extends include/layout
+block content
+    header
+        p.lead Coucou
+    hr
+    div(ng-app='app', ng-strict-di)
+        .jumbotron(ng-controller="MainController", ng-bind="message")
+
+block js
+    script(src=revision("main", "js"))

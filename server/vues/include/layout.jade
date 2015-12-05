@@ -19,10 +19,7 @@ html
             <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
             <![endif]
 
-
-
-        link(href="/bower_components/bootstrap/dist/css/bootstrap.css", rel="stylesheet", type="text/css")
-        link(href=revision("/genere/css/style.css"), rel="stylesheet", type="text/css")
+        link(href=revision("main", "css"), rel="stylesheet", type="text/css")
 
     body(class=classe)
         nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
@@ -54,5 +51,5 @@ html
             block content
             hr
             footer le footer
-        script(src=revision("/app/js/vendor.bundle.js"))
+        script(src=revision("vendor", "js"))
         block js

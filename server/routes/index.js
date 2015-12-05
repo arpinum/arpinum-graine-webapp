@@ -1,5 +1,5 @@
 var indexRoute = require("./accueil");
 
-module.exports = function(app) {
+module.exports = (app) => {
     app.get('/', indexRoute.index);
 };

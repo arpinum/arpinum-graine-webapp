@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     var config = {
         pkg: grunt.file.readJSON("package.json"),
         prod: grunt.option("prod") || false,
-        buildDir: "public/app"
+        buildDir: "server/public/app"
     };
 
     grunt.util._.extend(config, loadConfig("./tasks/options/"));

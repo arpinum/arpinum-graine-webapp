@@ -1,5 +1,5 @@
 .idea
 *.iml
 node_modules
-public/app
+server/public/app
 junit-report.xml

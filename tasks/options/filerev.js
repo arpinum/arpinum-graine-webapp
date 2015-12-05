@@ -5,9 +5,9 @@ module.exports = {
         length: 8
     },
     js: {
-        src: "<%= buildDir%>/js/*.js"
+        src: "<%= buildDir%>/*.js"
     },
     css: {
-        src: "<%= buildDir%>/css/*.css"
+        src: "<%= buildDir%>/*.css"
     }
 };
