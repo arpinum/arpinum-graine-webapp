@@ -17,6 +17,7 @@
   "strict": true,
   "expr": true,
   "laxbreak": true,
+  "esnext": true,
   "node":true,
   "globals": {
     "describe": false,

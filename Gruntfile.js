@@ -7,7 +7,7 @@ module.exports = function (grunt) {
     var config = {
         pkg: grunt.file.readJSON("package.json"),
         prod: grunt.option("prod") || false,
-        buildDir: "public/genere"
+        buildDir: "public/app"
     };
 
     grunt.util._.extend(config, loadConfig("./tasks/options/"));
@@ -16,9 +16,9 @@ module.exports = function (grunt) {
 
     grunt.loadTasks("tasks");
 
-    grunt.registerTask("test", ["jshint", "mochaTest:console"]);
+    grunt.registerTask("test", ["jshint", "mocha:console"]);
 
-    grunt.registerTask("ci", ["jshint", "mochaTest:ci", "build"]);
+    grunt.registerTask("ci", ["jshint", "mocha:ci", "build"]);
 
     grunt.registerTask("default", ["clean", "dev"]);
 

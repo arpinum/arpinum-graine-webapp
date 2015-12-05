@@ -1,3 +1,9 @@
-"use strict";
-module.exports = require("angular").module("concept", [])
-    .controller("MainController", require("./controller/main_controller")).name;
+
+
+import "angular";
+import MainController from "./controller/main_controller";
+
+angular.module("concept", [])
+    .controller("MainController", MainController);
+
+export default "concept";

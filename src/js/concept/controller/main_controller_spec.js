@@ -2,6 +2,7 @@
 
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
+import MainController from "./main_controller";
 
 describe("Une première spec", function () {
 
@@ -9,13 +10,10 @@ describe("Une première spec", function () {
 
     beforeEach(function () {
         $scope = {};
-        var MainController = require("./main_controller");
+
         controller = new MainController($scope);
     });
 
-    it("doit être défini", function () {
-        expect(controller).to.be.defined;
-    });
 
     it("doit parler au scope", function () {
         expect($scope.test).to.equal("toto");

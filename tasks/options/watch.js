@@ -5,6 +5,6 @@ module.exports = {
     },
     js: {
         files: ["src/js/**/*.js"],
-        tasks: ["jshint", "mochaTest:watch"]
+        tasks: ["jshint", "mocha:console"]
     }
 };
