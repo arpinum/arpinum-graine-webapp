@@ -2,12 +2,13 @@
 
 
 module.exports = function (grunt) {
-
+    let path = require("path");
     require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
     var config = {
         pkg: grunt.file.readJSON("package.json"),
         prod: grunt.option("prod") || false,
-        buildDir: "server/public/app"
+        srcDir: path.join(__dirname, "src"),
+        buildDir: path.join(__dirname, "server", "public", "app")
     };
 
     grunt.util._.extend(config, loadConfig("./tasks/options/"));
@@ -16,9 +17,9 @@ module.exports = function (grunt) {
 
     grunt.loadTasks("tasks");
 
-    grunt.registerTask("test", ["jshint", "mocha:console"]);
+    grunt.registerTask("test", ["eslint", "mocha:console"]);
 
-    grunt.registerTask("ci", ["jshint", "mocha:ci", "build"]);
+    grunt.registerTask("ci", ["eslint", "mocha:ci", "build"]);
 
     grunt.registerTask("default", ["clean", "dev"]);
 

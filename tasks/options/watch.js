@@ -1,6 +1,6 @@
 module.exports = {
     js: {
         files: ["src/js/**/*.js"],
-        tasks: ["mocha:console"]
+        tasks: ["eslint", "mocha:console"]
     }
 };

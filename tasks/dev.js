@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         grunt.option.watch = true;
         backgroundWatch.stdout.pipe(process.stdout);
         backgroundWatch.stderr.pipe(process.stderr);
-        grunt.task.run(["mocha:console", "watch"]);
+        grunt.task.run(["eslint", "mocha:console", "watch"]);
     });
 
 };
