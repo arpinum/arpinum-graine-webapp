@@ -1,30 +1,39 @@
-var mapToUse = {};
+"use strict";
 
+class Revision {
+  constructor( mapFile, staticAssets) {
+    this.mapFile = mapFile;
+    this.staticAssets = staticAssets;
+  }
 
-function createLoader(mapFile) {
-    if(process.env.NODE_ENV === "development") {
-        return () => {
-            JSON.parse(require('fs').readFileSync(mapFile, "utf8"));
-        }
-    }
-    var mapStatic = require(mapFile);
-    return () => {
-        return mapStatic;
-    }
-}
+  register(app) {
+    app.locals.revision = this._createRevision(app.get("env") !== "development");
+  }
 
-function createRevision(mapFile) {
-    var loader = createLoader(mapFile);
+  _createRevision(prod) {
+    let loader = this._createLoader(prod);
     return function (bundle, type) {
-        return loader()[bundle][type];
+      return loader(bundle, type);
     }
+  }
+
+  _createLoader(prod) {
+    var self = this;
+    if (!prod) {
+      return (bundle, type) => {
+        return `${self.staticAssets}/${bundle}.${type}`;
+      }
+    }
+    return (bundle, type) => {
+      return require(self.mapFile)[bundle][type];
+    }
+  }
+
+
+
+
 }
 
-module.exports = {
 
-    registerHelper: function (app, mapFile) {
-        app.locals.revision = createRevision(mapFile);
-    }
-};
-
+module.exports = Revision;
 
