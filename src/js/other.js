@@ -1,6 +1,5 @@
+import angular from 'angular';
+import 'angular-bootstrap';
+import 'jquery';
 
-import angular from "angular";
-import "angular-bootstrap";
-import "jquery";
-
-angular.module("app", ["ui.bootstrap"]);
+angular.module('app', ['ui.bootstrap']);
