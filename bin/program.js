@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
 
-var Server = require("../server/server.js");
+var Server = require('../server/server.js');
 
 new Server().start();

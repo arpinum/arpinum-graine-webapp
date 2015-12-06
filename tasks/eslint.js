@@ -1,12 +1,12 @@
 module.exports = function (grunt) {
 
-  grunt.registerTask("eslint", function () {
+  grunt.registerTask('eslint', function () {
     grunt.util.spawn({
-      cmd: "./node_modules/eslint/bin/eslint.js",
-      args: [grunt.config("srcDir")],
+      cmd: './node_modules/eslint/bin/eslint.js',
+      args: ['*.js', '--ignore-path node_modules server/public'],
       grunt: false,
       opts: {
-        stdio: "inherit"
+        stdio: 'inherit'
       }
     }, this.async());
   });

@@ -4,6 +4,6 @@ exports.index = function (req, res) {
 
 	res.render('index', {
         classe : 'accueil',
-        titre : i18n.t("app.title.global")});
+        titre : i18n.t('app.title.global')});
 
 };

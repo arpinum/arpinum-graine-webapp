@@ -1,13 +1,13 @@
-"use strict";
+'use strict';
 
 class Revision {
-  constructor( mapFile, staticAssets) {
+  constructor(mapFile, staticAssets) {
     this.mapFile = mapFile;
     this.staticAssets = staticAssets;
   }
 
   register(app) {
-    app.locals.revision = this._createRevision(app.get("env") !== "development");
+    app.locals.revision = this._createRevision(app.get('env') !== 'development');
   }
 
   _createRevision(prod) {
@@ -28,12 +28,7 @@ class Revision {
       return require(self.mapFile)[bundle][type];
     }
   }
-
-
-
-
 }
-
 
 module.exports = Revision;
 
