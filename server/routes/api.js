@@ -1,16 +1,16 @@
 'use strict';
 let proxyMiddleware = require('http-proxy-middleware');
 let basicAuth = require('basic-auth');
-let configuration = require('../configuration').common;
+
 
 module.exports.register = function (app, configuration) {
-  registerApi(app);
+  registerApi(app, configuration);
   registerAdmin(app, configuration);
 };
 
-function registerApi(app) {
+function registerApi(app, configuration) {
   var apiProxy = proxyMiddleware(['/api/**', '!/api/**/admin/**'], {
-    target: configuration.apiUrl,
+    target: configuration.common.apiUrl,
     changeOrigin: true,
     pathRewrite: {
       '^/api': ''
@@ -38,7 +38,7 @@ function registerAdmin(app, configuration) {
     return unauthorized(res);
   };
   var adminProxy = proxyMiddleware('/api/**/admin/**', {
-    target: app.locals.apiUrlPrivee,
+    target: configuration.common.apiUrl,
     pathRewrite: {
       '^/api': ''
     },
