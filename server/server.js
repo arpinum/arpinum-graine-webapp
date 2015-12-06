@@ -3,7 +3,6 @@
 let express = require('express'),
   path = require('path'),
   i18n = require('i18next');
-let morgan = require('morgan');
 let serveStatic = require('serve-static');
 let Revision = require('./revision');
 class Server {
@@ -20,7 +19,7 @@ class Server {
   }
 
   start() {
-    console.log('Configuration de l'application pour l'environnement ' + this.app.get('env'));
+    console.log(`Configuration de l'application pour l'environnement ${this.app.get('env')}`);
     let port = process.env.PORT || 5000;
     this.app.listen(port, function () {
       console.log('Écoute sur le port ' + port);
@@ -29,7 +28,6 @@ class Server {
 }
 
 module.exports = Server;
-
 
 if (require.main === module) {
   return new Server().start();

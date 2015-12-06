@@ -14,7 +14,7 @@ class Revision {
     let loader = this._createLoader(prod);
     return function (bundle, type) {
       return loader(bundle, type);
-    }
+    };
   }
 
   _createLoader(prod) {
@@ -22,11 +22,11 @@ class Revision {
     if (!prod) {
       return (bundle, type) => {
         return `${self.staticAssets}/${bundle}.${type}`;
-      }
+      };
     }
     return (bundle, type) => {
       return require(self.mapFile)[bundle][type];
-    }
+    };
   }
 }
 

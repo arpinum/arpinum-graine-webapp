@@ -1,0 +1,13 @@
+{
+  "apiUrl": "http://localtest.me:8080",
+  "auth": {
+    "key": "39EF3CED29692612E55B43B625548776A55693F28FD114DF947C48351EE7596B",
+    "issuer":"http://localtest.me:5000",
+    "audience": "jamshake",
+    "checkReferrer": true
+  },
+  "admin": {
+    "key": "hdCN4nZnnl5E",
+    "password": "An4dMWciUmFPksBv5myU"
+  }
+}

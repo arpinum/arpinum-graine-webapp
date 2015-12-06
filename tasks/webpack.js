@@ -1,6 +1,7 @@
+'use strict';
+
 module.exports = function (grunt) {
 
-  'use strict';
   let _ = require('lodash');
   let webpack = require('webpack');
 
@@ -17,9 +18,9 @@ module.exports = function (grunt) {
   function logResult(callback) {
     return (err, stats) => {
       if (stats.hasError) {
-        grunt.log.writeln(stats.toString({colors:true}));
+        grunt.log.writeln(stats.toString({colors: true}));
       } else {
-        grunt.log.ok(stats.toString({colors:true}));
+        grunt.log.ok(stats.toString({colors: true}));
       }
       callback();
     }
