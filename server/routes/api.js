@@ -2,7 +2,6 @@
 let proxyMiddleware = require('http-proxy-middleware');
 let basicAuth = require('basic-auth');
 
-
 module.exports.register = function (app, configuration) {
   registerApi(app, configuration);
   registerAdmin(app, configuration);

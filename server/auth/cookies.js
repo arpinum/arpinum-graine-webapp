@@ -6,7 +6,7 @@ var configuration = require('../configuration').cookie;
 var days = 4;
 
 exports.isSessionPresent = function (req) {
-  return SESSION_NAME in req.cookies;
+  return false;
 };
 
 exports.setSession = function (response, token) {
@@ -21,7 +21,7 @@ exports.resetSession = function (response) {
 };
 
 exports.extractToken = function (request) {
-  return request.cookies[SESSION_NAME];
+  return (request.cookies || {})[SESSION_NAME];
 };
 
 function createOption(configuration) {

@@ -38,8 +38,7 @@ module.exports = function (grunt) {
     var configuration = {
       context: APP,
       entry: {
-        main: './js/main.js',
-        other: './js/other.js'
+        main: './js/main.js'
       },
       output: {
         path: BUILD,

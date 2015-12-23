@@ -3,7 +3,7 @@
 
 module.exports = function (grunt) {
 
-    var tests = './src/js/**/*_spec.js';
+    var tests = './src/js/**/*.spec.js';
     var _ = require('lodash');
 
     grunt.registerTask('mocha:ci', function () {
