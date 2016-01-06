@@ -1,8 +1,5 @@
 {
   "extends": [
     "arpinum/configurations/backend"
-  ],
-  "env": {
-    "es6": true
-  }
+  ]
 }

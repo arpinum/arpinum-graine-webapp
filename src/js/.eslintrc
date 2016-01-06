@@ -1,8 +1,5 @@
 {
   "extends": [
-    "arpinum"
-  ],
-  "ecmaFeatures": {
-    "modules": true
-  }
+    "arpinum/configurations/frontend"
+  ]
 }

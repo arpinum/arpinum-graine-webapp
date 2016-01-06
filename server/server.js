@@ -1,10 +1,11 @@
 'use strict';
 
-let express = require('express'),
-  path = require('path'),
-  i18n = require('i18next');
+let express = require('express');
+let path = require('path');
+let i18n = require('i18next');
 let serveStatic = require('serve-static');
 let Revision = require('./revision');
+
 class Server {
   constructor() {
     this.app = express();
@@ -27,8 +28,8 @@ class Server {
   }
 }
 
-module.exports = Server;
-
 if (require.main === module) {
-  return new Server().start();
+  new Server().start();
 }
+
+module.exports = Server;

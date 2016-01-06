@@ -1,4 +1,5 @@
 'use strict';
+
 let proxyMiddleware = require('http-proxy-middleware');
 let basicAuth = require('basic-auth');
 
